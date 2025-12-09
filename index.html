@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CV Creator - Professional Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-robot"></i> AI CV Creator</h1>
+            </div>
+            <div class="auth-buttons">
+                <button id="gmail-verify-btn" class="btn-gmail">
+                    <i class="fab fa-google"></i> Gmail Verify
+                </button>
+                <button id="facebook-login" class="btn-facebook">
+                    <i class="fab fa-facebook"></i> Facebook
+                </button>
+                <button id="whatsapp-login" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <div class="user-info" id="user-info" style="display: none;">
+                    <span id="user-name"></span>
+                    <span id="user-status" class="status-badge"></span>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Create Professional CVs with AI</h2>
+                <p>Unlimited beautiful CVs with multiple templates and colors</p>
+                <div class="verification-status">
+                    <div class="status-item">
+                        <i class="fab fa-google" id="gmail-icon"></i>
+                        <span>Gmail Verified</span>
+                    </div>
+                </div>
+                <div class="counter">
+                    <p>Free CVs created: <span id="free-counter">5</span>/5 remaining</p>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Creation Form -->
+    <section class="cv-creator">
+        <div class="container">
+            <div class="creator-container">
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <form id="cv-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photo">Upload Photo</label>
+                            <input type="file" id="photo" accept="image/*">
+                            <small>Photo will be sent to admin email</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profession">Profession</label>
+                            <input type="text" id="profession" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Experience</label>
+                            <textarea id="experience" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="education">Education</label>
+                            <textarea id="education" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="skills">Skills (comma separated)</label>
+                            <input type="text" id="skills">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="preview-btn" class="btn-primary">
+                                <i class="fas fa-eye"></i> Preview CV
+                            </button>
+                            <button type="submit" id="generate-btn" class="btn-success">
+                                <i class="fas fa-magic"></i> Generate CV
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="preview-section">
+                    <h3>CV Preview</h3>
+                    <div class="cv-preview" id="cv-preview">
+                        <div class="cv-placeholder">
+                            <p>Your CV preview will appear here</p>
+                            <p>Choose template and colors from options below</p>
+                        </div>
+                    </div>
+                    
+                    <div class="template-options">
+                        <h4>Select Template</h4>
+                        <div class="templates">
+                            <div class="template" data-template="professional">Professional</div>
+                            <div class="template" data-template="modern">Modern</div>
+                            <div class="template" data-template="creative">Creative</div>
+                            <div class="template" data-template="minimal">Minimal</div>
+                        </div>
+                        
+                        <h4>Color Scheme</h4>
+                        <div class="colors">
+                            <div class="color" data-color="#2563eb" style="background-color: #2563eb;"></div>
+                            <div class="color" data-color="#059669" style="background-color: #059669;"></div>
+                            <div class="color" data-color="#7c3aed" style="background-color: #7c3aed;"></div>
+                            <div class="color" data-color="#dc2626" style="background-color: #dc2626;"></div>
+                            <div class="color" data-color="#ea580c" style="background-color: #ea580c;"></div>
+                        </div>
+                        
+                        <div class="preview-actions">
+                            <button id="download-a4" class="btn-download">
+                                <i class="fas fa-download"></i> Download A4
+                            </button>
+                            <button id="download-legal" class="btn-download">
+                                <i class="fas fa-download"></i> Download Legal
+                            </button>
+                            <button id="print-cv" class="btn-print">
+                                <i class="fas fa-print"></i> Print CV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Requirements -->
+    <section class="verification-info">
+        <div class="container">
+            <h2>Verification Requirements</h2>
+            <div class="requirements">
+                <div class="requirement">
+                    <div class="req-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Gmail Verification</h3>
+                    <ul>
+                        <li>5 CVs creation allowed</li>
+                        <li>View CV preview</li>
+                        <li>Save CV data</li>
+                        <li>Download PDF formats</li>
+                        <li>Print CV directly</li>
+                    </ul>
+                    <button class="btn-gmail verify-btn" data-type="gmail">
+                        <i class="fab fa-google"></i> Verify Gmail
+                    </button>
+                </div>
+                
+                <div class="requirement premium">
+                    <div class="req-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Social Connect</h3>
+                    <ul>
+                        <li>Facebook Connect: 10 extra CVs</li>
+                        <li>WhatsApp Connect: 10 extra CVs</li>
+                        <li>Both Connected: Unlimited everything</li>
+                        <li><strong>Premium features unlocked</strong></li>
+                    </ul>
+                    <div class="social-buttons">
+                        <button class="btn-facebook" id="facebook-connect">
+                            <i class="fab fa-facebook"></i> Connect Facebook
+                        </button>
+                        <button class="btn-whatsapp" id="whatsapp-connect">
+                            <i class="fab fa-whatsapp"></i> Connect WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Contact Admin: <a href="mailto:shiyonghu21@gmail.com">shiyonghu21@gmail.com</a></p>
+            <p>All user information and photos are saved to Microsoft Access and sent to admin email</p>
+            <p>&copy; 2024 AI CV Creator. All rights reserved.</p>
+            <p class="admin-link">
+                <a href="admin/admin.php" target="_blank">
+                    <i class="fas fa-user-shield"></i> Admin Dashboard
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Verification Modals -->
+    <div id="gmail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Gmail Verification</h3>
+            <p>Enter your Gmail address to receive verification code</p>
+            <div class="form-group">
+                <input type="email" id="gmail-input" placeholder="your.email@gmail.com">
+                <small>You will receive 5 free CV creations after verification</small>
+            </div>
+            <div class="modal-buttons">
+                <button id="send-gmail-otp" class="btn-gmail">
+                    <i class="fas fa-paper-plane"></i> Send OTP
+                </button>
+            </div>
+            <div id="otp-section" style="display: none;">
+                <div class="form-group">
+                    <input type="text" id="gmail-otp" placeholder="Enter 6-digit OTP" maxlength="6">
+                </div>
+                <button id="verify-gmail-otp" class="btn-success">
+                    <i class="fas fa-check"></i> Verify OTP
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
